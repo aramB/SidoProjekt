@@ -8,8 +8,8 @@ import javafx.scene.shape.Circle;
 
 public class Anims {
 
-    public static SubScene getAnim(final int number) throws Exception {
-        Circle circle = new Circle(20, 20f, 7);
+    public static SubScene getAnim() {
+        Circle circle = new Circle(20, 20f, 15);
         circle.setFill(Color.RED);
         Group group = new Group();
         group.getChildren().add(circle);
