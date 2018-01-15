@@ -1,12 +1,11 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
@@ -14,7 +13,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
@@ -41,10 +39,11 @@ public class Main extends Application {
     }
 
 
-    public static void makeGrid(int rowS, int col, GridPane board) {
+    private static void makeGrid(int rowS, int col, GridPane board) {
         board.setGridLinesVisible(false);
         for (int i = 0; i < rowS; i++) {
             for (int j = 0; j < col; j++) {
+                //ImageView iv = new ImageView("../45px-CHess_pdt45.svg.png");
                 Text tx = new Text(i+", "+j);
                 Rectangle rect = new Rectangle(100,100);
                 if ((i%2==0 && j%2==0) || (i%2==1 && j%2==1)){
@@ -54,6 +53,7 @@ public class Main extends Application {
                     rect.setFill(Color.GREEN);
                 }
                 ColumnConstraints column = new ColumnConstraints(100);
+                //board.add(iv, i, j);
                 board.add(rect, i, j);
                 board.add(tx, i, j);
                 board.getColumnConstraints().add(column);
@@ -61,19 +61,13 @@ public class Main extends Application {
                 board.getRowConstraints().add(row);
             }
         }
-        pieceMarker(board);
+        circleTest(board);
     }
 
-
-    public static void pieceMarker(GridPane board) {
-//        board.setOnMouseReleased(new EventHandler<MouseEvent>() {
-//            public void handle(MouseEvent event) {
-//                System.out.println("x-coord: "+event.getSceneX()%8+ " =========== y-coord: " + event.getSceneY()%8);
-//            }
-//        });
+    private static void circleTest(GridPane board) {
         board.setOnMouseReleased(me -> {
             board.add(Anims.getAnim(), (int)((me.getSceneX() - (me.getSceneX() % 8)) / 100), (int)((me.getSceneY() - (me.getSceneY() % 8)) / 100)); //here the getAnim argument could be between 1-7
-            System.out.println(Anims.getAnim()+" **** "+ (int)((me.getSceneX() - (me.getSceneX() % 8)) / 100)+", "+ (int)((me.getSceneY() - (me.getSceneY() % 8)) / 100)); //here the getAnim argument could be between 1-7
+            System.out.println(Anims.getAnim()+" **** "+ (int)((me.getSceneX() - (me.getSceneX() % 8)) / 100)+", "+ (int)((me.getSceneY() - (me.getSceneY() % 8)) / 100));
         });
 
     }
