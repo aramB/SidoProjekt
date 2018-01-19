@@ -14,6 +14,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
+
 public class Main extends Application {
 
     private final static int HEIGHT = 820;
@@ -66,8 +68,12 @@ public class Main extends Application {
 
     private static void circleTest(GridPane board) {
         board.setOnMouseReleased(me -> {
-            board.add(Anims.getAnim(), (int)((me.getSceneX() - (me.getSceneX() % 8)) / 100), (int)((me.getSceneY() - (me.getSceneY() % 8)) / 100)); //here the getAnim argument could be between 1-7
-            System.out.println(Anims.getAnim()+" **** "+ (int)((me.getSceneX() - (me.getSceneX() % 8)) / 100)+", "+ (int)((me.getSceneY() - (me.getSceneY() % 8)) / 100));
+			try {
+				board.add(Anims.getAnim(), (int)((me.getSceneX() - (me.getSceneX() % 8)) / 100), (int)((me.getSceneY() - (me.getSceneY() % 8)) / 100)); //here the getAnim argument could be between 1-7
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			System.out.println(" **** "+ (int)((me.getSceneX() - (me.getSceneX() % 8)) / 100)+", "+ (int)((me.getSceneY() - (me.getSceneY() % 8)) / 100));
         });
 
     }
