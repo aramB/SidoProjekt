@@ -10,4 +10,6 @@ public class Pawn {
         this.posY = posY;
         this.pieceType = pieceType;
     }
+
+
 }
