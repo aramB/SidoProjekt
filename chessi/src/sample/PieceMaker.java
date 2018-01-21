@@ -11,9 +11,14 @@ import java.io.FileNotFoundException;
 
 public class PieceMaker {
 
-    public static SubScene setWhitePawns(String path) throws FileNotFoundException {
+    public static SubScene setPiece(String path) {
         //Circle circle = new Circle(20, 20f, 15);
-        FileInputStream inputstream = new FileInputStream(path);
+        FileInputStream inputstream = null;
+        try {
+            inputstream = new FileInputStream(path);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         Image image = new Image(inputstream);
         ImageView imgV = new ImageView(image);
         imgV.setX(28);
@@ -26,12 +31,19 @@ public class PieceMaker {
         return scene;
     }
 
-    public static void piecemaker(GridPane board) throws FileNotFoundException {
+    public static void piecemaker(GridPane board){
+        //white pawn
         for (int i = 0; i < 8; i++) {
-            board.add(setWhitePawns("D:\\GitProjects\\SidoProjekt\\chessi\\src\\chessPieces\\whitePawn.png"), i,1);
-            board.add(setWhitePawns("D:\\GitProjects\\SidoProjekt\\chessi\\src\\chessPieces\\blackPawn.png"), i,6);
+            board.add(setPiece("D:\\GitProjects\\SidoProjekt\\chessi\\src\\chessPieces\\whitePawn.png"), i,1);
+            
+            //board.getRowIndex();
         }
-        //return subScene;
+
+        //black pawn
+        for (int i = 0; i < 8; i++) {
+            board.add(setPiece("D:\\GitProjects\\SidoProjekt\\chessi\\src\\chessPieces\\blackPawn.png"), i,6);
+        }
+
     }
 
 }

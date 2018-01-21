@@ -25,7 +25,7 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         primaryStage.setResizable(false);
         GridPane board = new GridPane();
         //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
@@ -77,7 +77,7 @@ public class Main extends Application {
 /*    private static void circleTest(GridPane board) {
         board.setOnMouseReleased(me -> {
 			try {
-				board.add(PieceMaker.setWhitePawns(""), (int)((me.getSceneX() - (me.getSceneX() % 8)) / 100), (int)((me.getSceneY() - (me.getSceneY() % 8)) / 100)); //here the setWhitePawns argument could be between 1-7
+				board.add(PieceMaker.setPiece(""), (int)((me.getSceneX() - (me.getSceneX() % 8)) / 100), (int)((me.getSceneY() - (me.getSceneY() % 8)) / 100)); //here the setPiece argument could be between 1-7
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
