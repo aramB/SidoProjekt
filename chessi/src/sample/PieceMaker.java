@@ -35,7 +35,7 @@ public class PieceMaker {
         //white pawn
         for (int i = 0; i < 8; i++) {
             board.add(setPiece("D:\\GitProjects\\SidoProjekt\\chessi\\src\\chessPieces\\whitePawn.png"), i,1);
-            
+
             //board.getRowIndex();
         }
 
