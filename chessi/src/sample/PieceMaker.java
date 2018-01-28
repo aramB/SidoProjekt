@@ -19,6 +19,7 @@ public class PieceMaker {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        assert inputstream != null;
         Image image = new Image(inputstream);
         ImageView imgV = new ImageView(image);
         imgV.setX(28);
@@ -31,19 +32,30 @@ public class PieceMaker {
         return scene;
     }
 
+    private static void selectPiece(SubScene subScene, Pawn pawn){
+        subScene.setOnMouseReleased(event -> {
+            System.out.println(pawn.getPieceType());
+        });
+    }
+
+    /**
+     *
+     * @param board
+     */
     public static void piecemaker(GridPane board){
         //white pawn
         for (int i = 0; i < 8; i++) {
-            board.add(setPiece("D:\\GitProjects\\SidoProjekt\\chessi\\src\\chessPieces\\whitePawn.png"), i,1);
-
-            //board.getRowIndex();
+            SubScene scenePiece = setPiece("D:\\GitProjects\\SidoProjekt\\chessi\\src\\chessPieces\\whitePawn.png");
+            board.add(scenePiece, i,1);
+            Pawn pawn = new Pawn(board.getRowIndex(scenePiece), i, Pieces.PAWN, scenePiece);
+            selectPiece(scenePiece, pawn);
+//            System.out.println(board.getRowIndex(scenePiece));
         }
 
         //black pawn
         for (int i = 0; i < 8; i++) {
             board.add(setPiece("D:\\GitProjects\\SidoProjekt\\chessi\\src\\chessPieces\\blackPawn.png"), i,6);
         }
-
     }
 
 }

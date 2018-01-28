@@ -14,4 +14,44 @@ public class Pawn {
         this.pieceType = pieceType;
         this.piece = piece;
     }
+
+    public int getPosX() {
+
+        return posX;
+    }
+
+    public void setPosX(int posX) {
+
+        this.posX = posX;
+    }
+
+    public int getPosY() {
+
+        return posY;
+    }
+
+    public void setPosY(int posY) {
+
+        this.posY = posY;
+    }
+
+    public Pieces getPieceType() {
+
+        return pieceType;
+    }
+
+    public void setPieceType(Pieces pieceType) {
+
+        this.pieceType = pieceType;
+    }
+
+    public SubScene getPiece() {
+
+        return piece;
+    }
+
+    public void setPiece(SubScene piece) {
+
+        this.piece = piece;
+    }
 }
