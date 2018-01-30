@@ -5,11 +5,17 @@ import javafx.scene.SubScene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class PieceMaker {
+
+    List<Pieces> pieces = new ArrayList<>();
 
     public static SubScene setPiece(String path) {
         //Circle circle = new Circle(20, 20f, 15);
@@ -28,33 +34,38 @@ public class PieceMaker {
         Group group = new Group();
         group.getChildren().add(imgV);
         SubScene scene = new SubScene(group, 100, 100);
-        //scene.setFill(Color.WHITE);
+        scene.setFill(Color.TRANSPARENT);
         return scene;
     }
 
-    private static void selectPiece(SubScene subScene, Pawn pawn){
-        subScene.setOnMouseReleased(event -> {
-            System.out.println(pawn.getPieceType());
-        });
-    }
 
     /**
      *
      * @param board
      */
     public static void piecemaker(GridPane board){
+        AtomicReference<Boolean> selected = new AtomicReference<>(false);
         //white pawn
         for (int i = 0; i < 8; i++) {
-            SubScene scenePiece = setPiece("D:\\GitProjects\\SidoProjekt\\chessi\\src\\chessPieces\\whitePawn.png");
+            SubScene scenePiece = setPiece("F:\\SidoProjekt\\chessi\\src\\chessPieces\\whitePawn.png");
             board.add(scenePiece, i,1);
-            Pawn pawn = new Pawn(board.getRowIndex(scenePiece), i, Pieces.PAWN, scenePiece);
-            selectPiece(scenePiece, pawn);
-//            System.out.println(board.getRowIndex(scenePiece));
+            Pawn pawn = new Pawn(board.getRowIndex(scenePiece), board.getColumnIndex(scenePiece), PieceType.PAWN, scenePiece);
+            scenePiece.setOnMouseReleased(event -> {
+                if (!selected.get()) {
+                    scenePiece.setFill(Color.LIGHTCYAN);
+                    selected.set(true);
+                }
+                else {
+                    scenePiece.setFill(Color.TRANSPARENT);
+                    selected.set(false);
+                }
+            });
+            //            System.out.println(board.getRowIndex(scenePiece));
         }
 
         //black pawn
         for (int i = 0; i < 8; i++) {
-            board.add(setPiece("D:\\GitProjects\\SidoProjekt\\chessi\\src\\chessPieces\\blackPawn.png"), i,6);
+            board.add(setPiece("F:\\SidoProjekt\\chessi\\src\\chessPieces\\blackPawn.png"), i,6);
         }
     }
 

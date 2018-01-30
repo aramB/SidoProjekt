@@ -2,17 +2,10 @@ package sample;
 
 import javafx.scene.SubScene;
 
-public class Bishop {
-    private int posX;
-    private int posY;
-    private Pieces pieceType;
-    private SubScene piece;
+public class Bishop extends Pieces{
 
-    public Bishop(int posX, int posY, Pieces pieceType, SubScene piece) {
-        this.posX = posX;
-        this.posY = posY;
-        this.pieceType = pieceType;
-        this.piece = piece;
+    public Bishop(int posX, int posY, PieceType pieceType, SubScene piece) {
+        super(posX, posY, pieceType, piece);
     }
 
 }
