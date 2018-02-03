@@ -1,9 +1,7 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -11,8 +9,6 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-
-import java.io.FileNotFoundException;
 
 public class Main extends Application {
 
@@ -32,7 +28,8 @@ public class Main extends Application {
         board.setPadding(new Insets(10, 10, 10, 10));
 
         makeBoard(8, 8, board);
-        PieceMaker.piecemaker(board);
+        PieceMaker.pieceSetters(board);
+		System.out.println("listans storlek: " + PieceMaker.pieceList.size());
 
         primaryStage.setTitle("Chessi");
         primaryStage.setScene(new Scene(board, WIDTH, HEIGHT, Color.WHITE));
@@ -56,8 +53,6 @@ public class Main extends Application {
                 RowConstraints row = new RowConstraints(100);
 
                 board.add(rect, i, j);
-                /*Text tx = new Text(i + ", " + j);
-                board.add(tx, i, j);*/
                 board.getColumnConstraints().add(column);
                 board.getRowConstraints().add(row);
             }
@@ -68,7 +63,7 @@ public class Main extends Application {
 
     private static void circleTest(GridPane board) {
         board.setOnMouseReleased(event -> {
-
+			//TODO -- eventhandler på hela brädet
         });
 
     }
@@ -77,7 +72,7 @@ public class Main extends Application {
 /*    private static void circleTest(GridPane board) {
         board.setOnMouseReleased(me -> {
 			try {
-				board.add(PieceMaker.setPiece(""), (int)((me.getSceneX() - (me.getSceneX() % 8)) / 100), (int)((me.getSceneY() - (me.getSceneY() % 8)) / 100)); //here the setPiece argument could be between 1-7
+				board.add(PieceMaker.sceneMaker(""), (int)((me.getSceneX() - (me.getSceneX() % 8)) / 100), (int)((me.getSceneY() - (me.getSceneY() % 8)) / 100)); //here the sceneMaker argument could be between 1-7
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
