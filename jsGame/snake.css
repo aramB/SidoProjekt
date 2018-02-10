@@ -27,3 +27,8 @@ td{
 .fruit{
     background-color: red;
 }
+
+h1{
+    font: normal 20px monospace;
+    color: white;
+}
