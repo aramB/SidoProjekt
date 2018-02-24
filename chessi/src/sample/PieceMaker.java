@@ -11,11 +11,11 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class PieceMaker {
 
 	public static List<Pieces> pieceList = new ArrayList<>();
-
 
 	public static void pieceSetters(GridPane board){
 		pawnMaker(board);
@@ -58,13 +58,47 @@ public class PieceMaker {
      * @param board
      */
     private static void pawnMaker(GridPane board){
+    	// TODO -- select solution not done!!
         for (int i = 0; i < 8; i++) {
 			//white pawn
             SubScene whitePawnScene = sceneMaker("src/chessPieces/whitePawn.png");
             board.add(whitePawnScene, i,1);
             Pawn whitePawn = new Pawn(board.getRowIndex(whitePawnScene), board.getColumnIndex(whitePawnScene), PieceType.PAWN, whitePawnScene);
             pieceList.add(whitePawn);
-            whitePawnScene.setOnMouseReleased(event -> System.out.println(whitePawn.getPieceType() + " clicked!"));
+            whitePawnScene.setOnMouseReleased(event -> {
+            	System.out.println(whitePawn.getPieceType() + " clicked!");
+				if (!whitePawn.isSelected()) {
+					for (Pieces item : pieceList) {
+						if (!Objects.equals(item, whitePawn) && item.isSelected()) {
+							if ((board.getRowIndex(whitePawnScene) % 2 == 0 && board.getColumnIndex(whitePawnScene) % 2 == 0) ||
+								(board.getRowIndex(whitePawnScene) % 2 == 1 && board.getColumnIndex(whitePawnScene) % 2 == 1)) {
+								item.setSelected(false);
+								whitePawnScene.setFill(Color.GRAY);
+								System.out.println("i if satsen");
+								break;
+							}
+							else {
+								item.setSelected(false);
+								whitePawnScene.setFill(Color.GREEN);
+								System.out.println("i else satsen");
+								break;
+							}
+						}
+						whitePawn.setSelected(true);
+						whitePawnScene.setFill(Color.LIGHTGOLDENRODYELLOW);
+					}
+				}
+				else {
+					whitePawn.setSelected(false);
+					if ((board.getRowIndex(whitePawnScene) % 2 == 0 && board.getColumnIndex(whitePawnScene) % 2 == 0) ||
+						(board.getRowIndex(whitePawnScene) % 2 == 1 && board.getColumnIndex(whitePawnScene) % 2 == 1)) {
+						whitePawnScene.setFill(Color.GRAY);
+					}
+					else {
+						whitePawnScene.setFill(Color.GREEN);
+					}
+				}
+			});
 
             //black pawn
 			SubScene blackPawnScene = sceneMaker("src/chessPieces/blackPawn.png");

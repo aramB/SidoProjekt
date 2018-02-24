@@ -64,6 +64,7 @@ public class Main extends Application {
     private static void circleTest(GridPane board) {
         board.setOnMouseReleased(event -> {
 			//TODO -- eventhandler på hela brädet
+
         });
 
     }

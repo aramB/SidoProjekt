@@ -6,13 +6,15 @@ public class Pieces {
     private int posX;
     private int posY;
     private PieceType pieceType;
-    private SubScene piece;
+    private SubScene pieceScene;
+    private boolean selected;
 
-    public Pieces(int posX, int posY, PieceType pieceType, SubScene piece) {
+    public Pieces(int posX, int posY, PieceType pieceType, SubScene pieceScene) {
         this.posX = posX;
         this.posY = posY;
         this.pieceType = pieceType;
-        this.piece = piece;
+        this.pieceScene = pieceScene;
+        selected = false;
     }
 
     public int getPosX() {
@@ -45,13 +47,21 @@ public class Pieces {
         this.pieceType = pieceType;
     }
 
-    public SubScene getPiece() {
+    public SubScene getPieceScene() {
 
-        return piece;
+        return pieceScene;
     }
 
-    public void setPiece(SubScene piece) {
+    public void setPieceScene(SubScene pieceScene) {
 
-        this.piece = piece;
+        this.pieceScene = pieceScene;
     }
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public void setSelected(final boolean selected) {
+		this.selected = selected;
+	}
 }
