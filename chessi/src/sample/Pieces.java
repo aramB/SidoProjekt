@@ -9,7 +9,7 @@ public class Pieces {
     private SubScene pieceScene;
     private boolean selected;
 
-    public Pieces(int posX, int posY, PieceType pieceType, SubScene pieceScene) {
+    public Pieces(int posY, int posX, PieceType pieceType, SubScene pieceScene) {
         this.posX = posX;
         this.posY = posY;
         this.pieceType = pieceType;

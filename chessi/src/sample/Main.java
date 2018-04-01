@@ -10,6 +10,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
+import java.util.List;
+
 public class Main extends Application {
 
     private final static int HEIGHT = 820;
@@ -57,19 +59,22 @@ public class Main extends Application {
                 board.getRowConstraints().add(row);
             }
         }
-        circleTest(board);
+        select(board, PieceMaker.pieceList);
     }
 
 
-    private static void circleTest(GridPane board) {
-        board.setOnMouseReleased(event -> {
-			//TODO -- eventhandler på hela brädet
-
-        });
-
-    }
-
-
+	public static void select(GridPane board, List<Pieces> pieceList) {
+		//TODO -- eventhandler på hela brädet
+		board.setOnMouseReleased(event -> {
+			System.out.println("x: " + (int)((event.getSceneX() - (event.getSceneX() % 8)) / 100) + ", y: " + (int)((event.getSceneY() - (event.getSceneY() % 8)) / 100));
+			for (Pieces piece: pieceList) {
+				if (piece.getPosX() == (int)((event.getSceneX() - (event.getSceneX() % 8)) / 100)
+					&& piece.getPosY() == (int)((event.getSceneY() - (event.getSceneY() % 8)) / 100)) {
+					System.out.println("pieceType: " + piece.getPieceType());
+				}
+			}
+		});
+	}
 /*    private static void circleTest(GridPane board) {
         board.setOnMouseReleased(me -> {
 			try {

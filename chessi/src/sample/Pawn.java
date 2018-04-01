@@ -4,7 +4,7 @@ import javafx.scene.SubScene;
 
 public class Pawn extends Pieces{
 
-    public Pawn(int posX, int posY, PieceType pieceType, SubScene piece) {
-        super(posX, posY, pieceType, piece);
+    public Pawn(int posY, int posX, PieceType pieceType, SubScene piece) {
+        super(posY, posX, pieceType, piece);
     }
 }

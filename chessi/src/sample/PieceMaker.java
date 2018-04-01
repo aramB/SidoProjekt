@@ -63,9 +63,9 @@ public class PieceMaker {
 			//white pawn
             SubScene whitePawnScene = sceneMaker("src/chessPieces/whitePawn.png");
             board.add(whitePawnScene, i,1);
-            Pawn whitePawn = new Pawn(board.getRowIndex(whitePawnScene), board.getColumnIndex(whitePawnScene), PieceType.PAWN, whitePawnScene);
+            Pawn whitePawn = new Pawn(board.getRowIndex(whitePawnScene), board.getColumnIndex(whitePawnScene), PieceType.PAWN_W, whitePawnScene);
             pieceList.add(whitePawn);
-            whitePawnScene.setOnMouseReleased(event -> {
+            /*whitePawnScene.setOnMouseReleased(event -> {
             	System.out.println(whitePawn.getPieceType() + " clicked!");
 				if (!whitePawn.isSelected()) {
 					for (Pieces item : pieceList) {
@@ -98,14 +98,13 @@ public class PieceMaker {
 						whitePawnScene.setFill(Color.GREEN);
 					}
 				}
-			});
+			});*/
 
             //black pawn
 			SubScene blackPawnScene = sceneMaker("src/chessPieces/blackPawn.png");
 			board.add(blackPawnScene, i,6);
-			Pawn blackPawn = new Pawn(board.getRowIndex(blackPawnScene), board.getColumnIndex(blackPawnScene), PieceType.PAWN, blackPawnScene);
+			Pawn blackPawn = new Pawn(board.getRowIndex(blackPawnScene), board.getColumnIndex(blackPawnScene), PieceType.PAWN_B, blackPawnScene);
 			pieceList.add(blackPawn);
-			blackPawnScene.setOnMouseReleased(event -> System.out.println(blackPawn.getPieceType() + " clicked!"));
         }
     }
 
@@ -124,9 +123,8 @@ public class PieceMaker {
 			else {
 				board.add(whiteRookScene, 7, 0);
 			}
-			Rook whiteRook = new Rook(board.getRowIndex(whiteRookScene), board.getColumnIndex(whiteRookScene), PieceType.ROOK, whiteRookScene);
+			Rook whiteRook = new Rook(board.getRowIndex(whiteRookScene), board.getColumnIndex(whiteRookScene), PieceType.ROOK_W, whiteRookScene);
 			pieceList.add(whiteRook);
-			whiteRookScene.setOnMouseReleased(event -> System.out.println(whiteRook.getPieceType() + " clicked!"));
 		}
 
 		//black rooks
@@ -138,9 +136,8 @@ public class PieceMaker {
 			else {
 				board.add(blackRookScene, 7, 7);
 			}
-			Rook blackRook = new Rook(board.getRowIndex(blackRookScene), board.getColumnIndex(blackRookScene), PieceType.ROOK, blackRookScene);
+			Rook blackRook = new Rook(board.getRowIndex(blackRookScene), board.getColumnIndex(blackRookScene), PieceType.ROOK_B, blackRookScene);
 			pieceList.add(blackRook);
-			blackRookScene.setOnMouseReleased(event -> System.out.println(blackRook.getPieceType() + " clicked!"));
 		}
 	}
 
@@ -159,9 +156,8 @@ public class PieceMaker {
 			else {
 				board.add(whiteKnightScene, 6, 0);
 			}
-			Knight whiteKnight = new Knight(board.getColumnIndex(whiteKnightScene), board.getRowIndex(whiteKnightScene), PieceType.KNIGHT, whiteKnightScene);
+			Knight whiteKnight = new Knight(board.getRowIndex(whiteKnightScene), board.getColumnIndex(whiteKnightScene), PieceType.KNIGHT_W, whiteKnightScene);
 			pieceList.add(whiteKnight);
-			whiteKnightScene.setOnMouseReleased(event -> System.out.println(whiteKnight.getPieceType() + " clicked!"));
 		}
 
 		//black rooks
@@ -173,9 +169,8 @@ public class PieceMaker {
 			else {
 				board.add(blackKnightScene, 6, 7);
 			}
-			Knight blackKnight = new Knight(board.getColumnIndex(blackKnightScene), board.getRowIndex(blackKnightScene), PieceType.KNIGHT, blackKnightScene);
+			Knight blackKnight = new Knight(board.getRowIndex(blackKnightScene), board.getColumnIndex(blackKnightScene), PieceType.KNIGHT_B, blackKnightScene);
 			pieceList.add(blackKnight);
-			blackKnightScene.setOnMouseReleased(event -> System.out.println(blackKnight.getPieceType() + " clicked!"));
 		}
 	}
 
@@ -194,9 +189,8 @@ public class PieceMaker {
 			else {
 				board.add(whiteBishopScene, 5, 0);
 			}
-			Bishop whiteBishop = new Bishop(board.getColumnIndex(whiteBishopScene), board.getRowIndex(whiteBishopScene), PieceType.KNIGHT, whiteBishopScene);
+			Bishop whiteBishop = new Bishop(board.getRowIndex(whiteBishopScene), board.getColumnIndex(whiteBishopScene), PieceType.BISHOP_W, whiteBishopScene);
 			pieceList.add(whiteBishop);
-			whiteBishopScene.setOnMouseReleased(event -> System.out.println(whiteBishop.getPieceType() + " clicked!"));
 		}
 
 		//black rooks
@@ -208,9 +202,8 @@ public class PieceMaker {
 			else {
 				board.add(blackBishopScene, 5, 7);
 			}
-			Bishop blackBishop = new Bishop(board.getColumnIndex(blackBishopScene), board.getRowIndex(blackBishopScene),  PieceType.BISHOP, blackBishopScene);
+			Bishop blackBishop = new Bishop(board.getRowIndex(blackBishopScene), board.getColumnIndex(blackBishopScene),  PieceType.BISHOP_B, blackBishopScene);
 			pieceList.add(blackBishop);
-			blackBishopScene.setOnMouseReleased(event -> System.out.println(blackBishop.getPieceType() + " clicked!"));
 		}
 	}
 
@@ -223,16 +216,14 @@ public class PieceMaker {
 		//white
 		SubScene whiteQueenScene = sceneMaker("src/chessPieces/whiteQueen.png");
 		board.add(whiteQueenScene, 3, 0);
-		Queen whiteQueen = new Queen(board.getColumnIndex(whiteQueenScene), board.getRowIndex(whiteQueenScene), PieceType.QUEEN, whiteQueenScene);
+		Queen whiteQueen = new Queen(board.getRowIndex(whiteQueenScene), board.getColumnIndex(whiteQueenScene), PieceType.QUEEN_W, whiteQueenScene);
 		pieceList.add(whiteQueen);
-		whiteQueenScene.setOnMouseReleased(event -> System.out.println(whiteQueen.getPieceType() + " clicked!"));
 
 		//black
 		SubScene blackQueenScene = sceneMaker("src/chessPieces/blackQueen.png");
 		board.add(blackQueenScene, 3, 7);
-		Queen blackQueen = new Queen(board.getColumnIndex(whiteQueenScene), board.getRowIndex(whiteQueenScene), PieceType.QUEEN, whiteQueenScene);
+		Queen blackQueen = new Queen(board.getRowIndex(blackQueenScene), board.getColumnIndex(whiteQueenScene), PieceType.QUEEN_B, whiteQueenScene);
 		pieceList.add(blackQueen);
-		blackQueenScene.setOnMouseReleased(event -> System.out.println(blackQueen.getPieceType() + " clicked!"));
 	}
 
 
@@ -244,16 +235,14 @@ public class PieceMaker {
 		//white
 		SubScene whiteKingScene = sceneMaker("src/chessPieces/whiteKing.png");
 		board.add(whiteKingScene, 4, 0);
-		King whiteKing = new King(board.getColumnIndex(whiteKingScene), board.getRowIndex(whiteKingScene), PieceType.KING, whiteKingScene);
+		King whiteKing = new King(board.getRowIndex(whiteKingScene), board.getColumnIndex(whiteKingScene), PieceType.KING_W, whiteKingScene);
 		pieceList.add(whiteKing);
-		whiteKingScene.setOnMouseReleased(event -> System.out.println(whiteKing.getPieceType() + " clicked!"));
 
 		//black
 		SubScene blackKingScene = sceneMaker("src/chessPieces/blackKing.png");
 		board.add(blackKingScene, 4, 7);
-		King blackKing = new King(board.getColumnIndex(whiteKingScene), board.getRowIndex(whiteKingScene), PieceType.KING, whiteKingScene);
+		King blackKing = new King(board.getRowIndex(blackKingScene), board.getColumnIndex(whiteKingScene), PieceType.KING_B, whiteKingScene);
 		pieceList.add(blackKing);
-		blackKingScene.setOnMouseReleased(event -> System.out.println(blackKing.getPieceType() + " clicked!"));
 	}
 
 }
