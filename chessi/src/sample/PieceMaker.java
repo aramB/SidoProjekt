@@ -24,6 +24,7 @@ public class PieceMaker {
 		bishopMaker(board);
 		knightMaker(board);
 		rookMaker(board);
+		setEmpty(board);
 	}
 
 
@@ -51,6 +52,16 @@ public class PieceMaker {
         }
 		return scene;
     }
+
+
+    public static void setEmpty(GridPane board) {
+		for (int y = 2; y < 6; y++) {
+			for (int x = 0; x < 8; x++) {
+				Pieces emptyObject = new Pieces(y, x, PieceType.EMPTY, null);
+				pieceList.add(emptyObject);
+			}
+		}
+	}
 
 
     /**
