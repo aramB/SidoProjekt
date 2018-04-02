@@ -12,10 +12,15 @@ import javafx.stage.Stage;
 
 import java.util.List;
 
+/**
+ * The entry point of the app
+ */
 public class Main extends Application {
 
     private final static int HEIGHT = 820;
     private final static int WIDTH = 820;
+    public static boolean isSelected = false;
+    public static Pieces currentPiece;
 
 
     public static void main(String[] args) {
@@ -66,11 +71,34 @@ public class Main extends Application {
 	public static void select(GridPane board, List<Pieces> pieceList) {
 		//TODO -- eventhandler på hela brädet
 		board.setOnMouseReleased(event -> {
-			System.out.println("x: " + (int)((event.getSceneX() - (event.getSceneX() % 8)) / 100) + ", y: " + (int)((event.getSceneY() - (event.getSceneY() % 8)) / 100));
+			System.out.println("x: " + (int)((event.getSceneX() - (event.getSceneX() % 8)) / 100) +
+							   ", y: " + (int)((event.getSceneY() - (event.getSceneY() % 8)) / 100));
 			for (Pieces piece: pieceList) {
 				if (piece.getPosX() == (int)((event.getSceneX() - (event.getSceneX() % 8)) / 100)
-					&& piece.getPosY() == (int)((event.getSceneY() - (event.getSceneY() % 8)) / 100)) {
+					&& piece.getPosY() == (int)((event.getSceneY() - (event.getSceneY() % 8)) / 100)
+						&& !isSelected) {
 					System.out.println("pieceType: " + piece.getPieceType());
+					isSelected = true;
+					piece.setSelected(true);
+					currentPiece = piece;
+					currentPiece.getPieceScene().setFill(Color.color(1, 0, 0));
+				}
+				else if (piece.getPosX() == (int)((event.getSceneX() - (event.getSceneX() % 8)) / 100)
+									&& piece.getPosY() == (int)((event.getSceneY() - (event.getSceneY() % 8)) / 100)
+										&& isSelected) {
+					if ((board.getRowIndex(currentPiece.getPieceScene()) % 2 == 0 &&
+						 board.getColumnIndex(currentPiece.getPieceScene()) % 2 == 0) ||
+						(board.getRowIndex(currentPiece.getPieceScene()) % 2 == 1 &&
+						 board.getColumnIndex(currentPiece.getPieceScene()) % 2 == 1)) {
+						isSelected = false;
+						currentPiece.setSelected(false);
+						currentPiece.getPieceScene().setFill(Color.GRAY);
+					}
+					else {
+						isSelected = false;
+						currentPiece.setSelected(false);
+						currentPiece.getPieceScene().setFill(Color.GREEN);
+					}
 				}
 			}
 		});
@@ -78,7 +106,8 @@ public class Main extends Application {
 /*    private static void circleTest(GridPane board) {
         board.setOnMouseReleased(me -> {
 			try {
-				board.add(PieceMaker.sceneMaker(""), (int)((me.getSceneX() - (me.getSceneX() % 8)) / 100), (int)((me.getSceneY() - (me.getSceneY() % 8)) / 100)); //here the sceneMaker argument could be between 1-7
+				board.add(PieceMaker.sceneMaker(""), (int)((me.getSceneX() - (me.getSceneX() % 8)) / 100),
+				(int)((me.getSceneY() - (me.getSceneY() % 8)) / 100)); //here the sceneMaker argument could be between 1-7
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
