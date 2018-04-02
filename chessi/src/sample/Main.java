@@ -38,7 +38,7 @@ public class Main extends Application {
         PieceMaker.pieceSetters(board);
 		System.out.println("listans storlek: " + PieceMaker.pieceList.size());
 
-        primaryStage.setTitle("Chessi");
+        primaryStage.setTitle("Chessiiiiiiiiiiii");
         primaryStage.setScene(new Scene(board, WIDTH, HEIGHT, Color.WHITE));
         primaryStage.show();
     }

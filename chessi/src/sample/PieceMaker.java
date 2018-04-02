@@ -234,7 +234,7 @@ public class PieceMaker {
 		//black
 		SubScene blackQueenScene = sceneMaker("src/chessPieces/blackQueen.png");
 		board.add(blackQueenScene, 3, 7);
-		Queen blackQueen = new Queen(board.getRowIndex(blackQueenScene), board.getColumnIndex(whiteQueenScene), PieceType.QUEEN_B, whiteQueenScene);
+		Queen blackQueen = new Queen(board.getRowIndex(blackQueenScene), board.getColumnIndex(whiteQueenScene), PieceType.QUEEN_B, blackQueenScene);
 		pieceList.add(blackQueen);
 	}
 
@@ -253,7 +253,7 @@ public class PieceMaker {
 		//black
 		SubScene blackKingScene = sceneMaker("src/chessPieces/blackKing.png");
 		board.add(blackKingScene, 4, 7);
-		King blackKing = new King(board.getRowIndex(blackKingScene), board.getColumnIndex(whiteKingScene), PieceType.KING_B, whiteKingScene);
+		King blackKing = new King(board.getRowIndex(blackKingScene), board.getColumnIndex(whiteKingScene), PieceType.KING_B, blackKingScene);
 		pieceList.add(blackKing);
 	}
 
